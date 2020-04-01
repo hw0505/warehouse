@@ -1,0 +1,11 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /hw
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/warehouse
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
