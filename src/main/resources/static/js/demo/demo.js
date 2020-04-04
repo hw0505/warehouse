@@ -1,15 +1,15 @@
 /**
  * js执行入口
  */
+
+
 layui.use(["element", "layer"], function () {
     let demo = new Demo();
     demo.init();
 });
 
 
-
-
-
+import Constants from "./constants.js";
 class Demo {
     constructor() {
         this.contextPath = this.getContextPath();
@@ -33,7 +33,9 @@ class Demo {
                 data: {},
                 success(data) {
                     let res = JSON.stringify(data);
-                    $(".demo").text(res)
+                    $(".demo").text(res);
+                    let router = Constants.ROUTER;
+                    $(".demo").text(res + "--------" + JSON.stringify(router));
                 }
             });
 
