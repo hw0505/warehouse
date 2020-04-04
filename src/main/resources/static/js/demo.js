@@ -1,6 +1,7 @@
-
-
-$(function () {
+/**
+ * js执行入口
+ */
+layui.use(["element", "layer"], function () {
     let demo = new Demo();
     demo.init();
 });
