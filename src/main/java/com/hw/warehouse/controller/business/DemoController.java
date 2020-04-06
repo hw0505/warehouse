@@ -30,4 +30,22 @@ public class DemoController {
         log.info("响应报文{}", res);
         return res;
     }
+
+    @GetMapping(value = "/table")
+    public String getTableInfo() {
+        String res = "{\n" +
+                "    \"code\": 0,\n" +
+                "    \"msg\": \"\",\n" +
+                "    \"count\": 1000,\n" +
+                "    \"data\": [\n" +
+                "        {\n" +
+                "            \"id\": 10000,\n" +
+                "            \"name\": \"user-0\",\n" +
+                "            \"number\": \"女\",\n" +
+                "            \"date\": \"城市-0\"\n" +
+                "        }\n" +
+                "    ]\n" +
+                "}";
+        return res;
+    }
 }
