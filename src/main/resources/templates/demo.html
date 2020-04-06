@@ -5,52 +5,203 @@
     <title>样例</title>
     <header th:replace="fragment/common/import_css::css_fragment_common"></header>
 </head>
-<body th:name="demo">
-    <div>
-        <ul class="layui-nav">
+<body th:name="demo" class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">XXX仓库管理系统</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <!-- <ul class="layui-nav layui-layout-left">
+          <li class="layui-nav-item"><a href="">控制台</a></li>
+          <li class="layui-nav-item"><a href="">商品管理</a></li>
+          <li class="layui-nav-item"><a href="">用户</a></li>
+          <li class="layui-nav-item">
+            <a href="javascript:;">其它系统</a>
+            <dl class="layui-nav-child">
+              <dd><a href="">邮件管理</a></dd>
+              <dd><a href="">消息管理</a></dd>
+              <dd><a href="">授权管理</a></dd>
+            </dl>
+          </li>
+        </ul> -->
+        <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
-                <a href="">控制台<span class="layui-badge">9</span></a>
-            </li>
-            <li class="layui-nav-item">
-                <a href="">个人中心<span class="layui-badge-dot"></span></a>
-            </li>
-            <li class="layui-nav-item">
-                <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    管理员
+                </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="javascript:;">修改信息</a></dd>
-                    <dd><a href="javascript:;">安全管理</a></dd>
-                    <dd><a href="javascript:;">退了</a></dd>
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
+            <li class="layui-nav-item"><a href="">退出</a></li>
         </ul>
     </div>
-    <div>
-        <ul class="layui-nav layui-nav-tree" lay-filter="test">
-            <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
-            <li class="layui-nav-item layui-nav-itemed">
-                <a href="javascript:;">默认展开</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="javascript:;">选项1</a></dd>
-                    <dd><a href="javascript:;">选项2</a></dd>
-                    <dd><a href="">跳转</a></dd>
-                </dl>
-            </li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">解决方案</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">移动模块</a></dd>
-                    <dd><a href="">后台模版</a></dd>
-                    <dd><a href="">电商平台</a></dd>
-                </dl>
-            </li>
-            <li class="layui-nav-item"><a href="">产品</a></li>
-            <li class="layui-nav-item"><a href="">大数据</a></li>
-        </ul>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;">仓库信息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">仓库进货</a></dd>
+                        <dd><a href="javascript:;">仓库出货</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
     </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">
+            <div class="layui-row">
+                <div class="layui-inline">
+                    <button type="button" id="in-add" class="layui-btn">添加进货记录</button>
+                    <button type="button" id="out-add" class="layui-btn">添加出货纪律</button>
+                </div>
+                <div class="layui-inline layui-layout-right" style="padding-top: 17px">
+                    <form class="layui-form layui-inline" action="">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <select name="warehousesearch" lay-verify="">
+                                    <option value="010">查询仓库进货</option>
+                                    <option value="021">查询仓库出货</option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                <select name="warehousesearch" lay-verify="">
+                                    <option value="010">按货物名称查询</option>
+                                    <option value="021">按日期查询</option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                <select name="warehousesearch" lay-verify="">
+                                    <option value="010">查询仓库进货</option>
+                                    <option value="021">查询仓库出货</option>
+                                </select>
+                                <input type="text" name="title" required lay-verify="required" placeholder="请输需要查询的内容" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-inline">
+                                <button class="layui-btn" lay-submit lay-filter="formDemo">查询</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div>
+                <table id="demo" lay-filter="test"></table>
+            </div>
+        </div>
+    </div>
+</div>
     <button id="demo-button">查数据</button>
     <div th:replace="fragment/pages/fragment_demo::page_demo"></div>
 
     <footer th:replace="fragment/common/import_js::js_fragment_common"></footer>
     <footer th:replace="fragment/common/import_js::js_fragment_demo"></footer>
+
+
+<script>
+
+
+
+
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+
+    layui.use('table', function(){
+        var table = layui.table;
+
+        //第一个实例
+        table.render({
+            elem: '#demo'
+            ,height: 312
+            ,url: '/demo/table/user/' //数据接口
+            ,page: true //开启分页
+            ,cols: [[
+                {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
+                ,{field: 'name', title: '物品名', width:80}
+                ,{field: 'number', title: '数量', width:80, sort: true}
+                ,{field: 'date', title: '日期', width:80}
+            ]]
+        });
+
+    });
+
+
+
+    $('#in-add').on('click', function(){
+        layer.open({
+            type: 1,
+            area: ['600px', '360px'],
+            shadeClose: true, //点击遮罩关闭
+            content: '\<\div style="padding:20px;"><form class="layui-form" action="">\n' +
+                '  <div class="layui-form-item">\n' +
+                '    <label class="layui-form-label">货物名称</label>\n' +
+                '    <div class="layui-input-block">\n' +
+                '      <input type="text" name="title" required  lay-verify="required" placeholder="请输入货物名称" autocomplete="off" class="layui-input">\n' +
+                '    </div>\n' +
+                '  </div>\n' +
+                '  <div class="layui-form-item">\n' +
+                '    <label class="layui-form-label">货物数量</label>\n' +
+                '    <div class="layui-input-block">\n' +
+                '      <input type="text" name="title" required  lay-verify="required" placeholder="请输入货物数量" autocomplete="off" class="layui-input">\n' +
+                '    </div>\n' +
+                '  </div>\n' +
+                '  <div class="layui-form-item">\n' +
+                '    <label class="layui-form-label">日期</label>\n' +
+                '    <div class="layui-input-block">\n' +
+                '      <input type="text" name="title" required  lay-verify="required" placeholder="请输入日期" autocomplete="off" class="layui-input">\n' +
+                '    </div>\n' +
+                '  </div>\n' +
+                '  <div class="layui-form-item">\n' +
+                '    <div class="layui-input-block">\n' +
+                '      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>\n' +
+                '      <button type="reset" class="layui-btn layui-btn-primary">重置</button>\n' +
+                '    </div>\n' +
+                '  </div>\n' +
+                '</form>\<\/div>'
+        });
+    });
+
+    $('#out-add').on('click', function(){
+        layer.open({
+            type: 1,
+            area: ['600px', '360px'],
+            shadeClose: true, //点击遮罩关闭
+            content: '\<\div style="padding:20px;"><form class="layui-form" action="">\n' +
+                '  <div class="layui-form-item">\n' +
+                '    <label class="layui-form-label">货物名称</label>\n' +
+                '    <div class="layui-input-block">\n' +
+                '      <input type="text" name="title" required  lay-verify="required" placeholder="请输入货物名称" autocomplete="off" class="layui-input">\n' +
+                '    </div>\n' +
+                '  </div>\n' +
+                '  <div class="layui-form-item">\n' +
+                '    <label class="layui-form-label">货物数量</label>\n' +
+                '    <div class="layui-input-block">\n' +
+                '      <input type="text" name="title" required  lay-verify="required" placeholder="请输入货物数量" autocomplete="off" class="layui-input">\n' +
+                '    </div>\n' +
+                '  </div>\n' +
+                '  <div class="layui-form-item">\n' +
+                '    <label class="layui-form-label">日期</label>\n' +
+                '    <div class="layui-input-block">\n' +
+                '      <input type="text" name="title" required  lay-verify="required" placeholder="请输入日期" autocomplete="off" class="layui-input">\n' +
+                '    </div>\n' +
+                '  </div>\n' +
+                '  <div class="layui-form-item">\n' +
+                '    <div class="layui-input-block">\n' +
+                '      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>\n' +
+                '      <button type="reset" class="layui-btn layui-btn-primary">重置</button>\n' +
+                '    </div>\n' +
+                '  </div>\n' +
+                '</form>\<\/div>'
+        });
+    });
+</script>
 </body>
 </html>
