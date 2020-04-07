@@ -41,13 +41,13 @@ public class DemoController {
             String tableItem = "{\n" +
                     "    \"code\": 0,\n" +
                     "    \"msg\": \"\",\n" +
-                    "    \"count\": 1000,\n" +
+                    "    \"count\": 100,\n" +
                     "    \"data\": [\n" +
                     "        {\n" +
-                    "            \"id\": " + inProductList.get(0).getInId() +",\n" +
-                    "            \"name\": " + inProductList.get(0).getInName() +",\n" +
-                    "            \"acount\": " + inProductList.get(0).getInNumber() +",\n" +
-                    "            \"date\": " +inProductList.get(0).getInDate() + "\n" +
+                    "            \"id\": \"" + inProductList.get(0).getInId() +"\",\n" +
+                    "            \"name\": \"" + inProductList.get(0).getInName() +"\",\n" +
+                    "            \"amount\": \"" + inProductList.get(0).getInNumber() +"\",\n" +
+                    "            \"date\": \"" +inProductList.get(0).getInDate() + "\"\n" +
                     "        }\n" +
                     "    ]\n" +
                     "}";
