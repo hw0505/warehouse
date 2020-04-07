@@ -106,7 +106,29 @@ class Demo {
      */
     init() {
         this.bindClick4Button();
+
+        this.testPost();
     }
+
+    testPost() {
+        debugger;
+        let map = {
+            "name": "test",
+            "id": "test"
+        };
+        this.$ajax({
+            url: "/hw/business/postTest",
+            type: "POST",
+            data: map,
+            success(data) {
+                let res = JSON.stringify(data);
+                $(".demo").text(res);
+                let router = Constants.ROUTER;
+                $(".demo").text(res + "--------" + JSON.stringify(router));
+            }
+        });
+    }
+
     /**
      * 给按钮绑定点击事件
      */

@@ -5,11 +5,10 @@ import com.hw.warehouse.utils.GsonUtils;
 import com.hw.warehouse.vo.UserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 业务controller
@@ -47,5 +46,11 @@ public class DemoController {
                 "    ]\n" +
                 "}";
         return res;
+    }
+
+    @PostMapping(value = "/postTest")
+    public String testPost(@RequestParam Map<String, Object> map) {
+        System.out.println(GsonUtils.toJson(map));
+        return "";
     }
 }
