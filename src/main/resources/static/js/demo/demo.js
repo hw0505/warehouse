@@ -108,10 +108,11 @@ class Demo {
         this.bindClick4Button();
 
         this.testPost();
+
+        this.testPost2();
     }
 
     testPost() {
-        debugger;
         let map = {
             "name": "test",
             "id": "test"
@@ -119,6 +120,27 @@ class Demo {
         this.$ajax({
             url: "/hw/business/postTest",
             type: "POST",
+            data: map,
+            success(data) {
+                let res = JSON.stringify(data);
+                $(".demo").text(res);
+                let router = Constants.ROUTER;
+                $(".demo").text(res + "--------" + JSON.stringify(router));
+            }
+        });
+    }
+
+    testPost2() {
+        let map = {
+            "name": "test",
+            "id": "test"
+        };
+        //这里不转String会报错，可以研究下
+        map =  JSON.stringify(map);
+        this.$ajax({
+            url: "/hw/business/postTest2",
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
             data: map,
             success(data) {
                 let res = JSON.stringify(data);

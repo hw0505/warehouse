@@ -53,4 +53,10 @@ public class DemoController {
         System.out.println(GsonUtils.toJson(map));
         return "";
     }
+
+    @PostMapping(value = "/postTest2")
+    public String testPost2(@RequestBody Map<String, Object> map) {
+        System.out.println(GsonUtils.toJson(map));
+        return "";
+    }
 }
