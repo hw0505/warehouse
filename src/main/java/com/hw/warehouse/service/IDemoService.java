@@ -1,7 +1,8 @@
 package com.hw.warehouse.service;
 
+import com.hw.warehouse.vo.InProductVo;
 import com.hw.warehouse.vo.UserVo;
-import org.springframework.stereotype.Service;
+import com.hw.warehouse.vo.OutProductVo;
 
 import java.util.List;
 
@@ -14,4 +15,6 @@ public interface IDemoService {
      * @return
      */
     List<UserVo> getUserList();
+    List<InProductVo> getInProductList();
+    List<OutProductVo> getOutProductList();
 }

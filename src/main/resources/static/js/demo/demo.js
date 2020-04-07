@@ -9,18 +9,18 @@ layui.use(["element", "layer", "table"], function () {
     var table = layui.table;
 
     //第一个实例
-    table.render({
-        elem: '#demo'
-        ,height: 312
-        ,url: '/hw/business/table' //数据接口
-        ,page: true //开启分页
-        ,cols: [[
-            {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
-            ,{field: 'name', title: '物品名', width:80}
-            ,{field: 'number', title: '数量', width:80, sort: true}
-            ,{field: 'date', title: '日期', width:80}
-        ]]
-    });
+    // table.render({
+    //     elem: '#table'
+    //     ,height: 312
+    //     ,url: '/hw/business/table' //数据接口
+    //     ,page: true //开启分页
+    //     ,cols: [[
+    //         {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
+    //         ,{field: 'name', title: '物品名', width:80}
+    //         ,{field: 'number', title: '数量', width:80, sort: true}
+    //         ,{field: 'date', title: '日期', width:80}
+    //     ]]
+    // });
 
     $('#in-add').on('click', function(){
         layer.open({
@@ -48,7 +48,7 @@ layui.use(["element", "layer", "table"], function () {
                 '  </div>\n' +
                 '  <div class="layui-form-item">\n' +
                 '    <div class="layui-input-block">\n' +
-                '      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>\n' +
+                '      <button id="add-in" class="layui-btn" lay-submit lay-filter="formDemo">添加进货记录</button>\n' +
                 '      <button type="reset" class="layui-btn layui-btn-primary">重置</button>\n' +
                 '    </div>\n' +
                 '  </div>\n' +
@@ -82,7 +82,7 @@ layui.use(["element", "layer", "table"], function () {
                 '  </div>\n' +
                 '  <div class="layui-form-item">\n' +
                 '    <div class="layui-input-block">\n' +
-                '      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>\n' +
+                '      <button id="add-out" class="layui-btn" lay-submit lay-filter="formDemo">添加出货记录</button>\n' +
                 '      <button type="reset" class="layui-btn layui-btn-primary">重置</button>\n' +
                 '    </div>\n' +
                 '  </div>\n' +
@@ -112,6 +112,57 @@ class Demo {
      */
     bindClick4Button() {
         $("#demo-button").on("click", () => {
+            this.$ajax({
+                url: this.url,
+                type: "GET",
+                data: {},
+                success(data) {
+                    let res = JSON.stringify(data);
+                    $(".demo").text(res);
+                    let router = Constants.ROUTER;
+                    $(".demo").text(res + "--------" + JSON.stringify(router));
+                }
+            });
+
+        });
+    }
+
+    bindSearchButton() {
+        $("#search-bt").on("click", () => {
+            this.$ajax({
+                url: this.url,
+                type: "GET",
+                data: {},
+                success(data) {
+                    let res = JSON.stringify(data);
+                    $(".demo").text(res);
+                    let router = Constants.ROUTER;
+                    $(".demo").text(res + "--------" + JSON.stringify(router));
+                }
+            });
+
+        });
+    }
+
+    bindAddInButton() {
+        $("#add-in").on("click", () => {
+            this.$ajax({
+                url: this.url,
+                type: "GET",
+                data: {},
+                success(data) {
+                    let res = JSON.stringify(data);
+                    $(".demo").text(res);
+                    let router = Constants.ROUTER;
+                    $(".demo").text(res + "--------" + JSON.stringify(router));
+                }
+            });
+
+        });
+    }
+
+    bindAddOutButton() {
+        $("#add-out").on("click", () => {
             this.$ajax({
                 url: this.url,
                 type: "GET",

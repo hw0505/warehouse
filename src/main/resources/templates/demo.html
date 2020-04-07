@@ -2,13 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>样例</title>
+    <title>宏义仓库管理系统</title>
     <header th:replace="fragment/common/import_css::css_fragment_common"></header>
 </head>
 <body th:name="demo" class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo">XXX仓库管理系统</div>
+        <div class="layui-logo">宏义仓库管理系统</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <!-- <ul class="layui-nav layui-layout-left">
           <li class="layui-nav-item"><a href="">控制台</a></li>
@@ -59,7 +59,7 @@
             <div class="layui-row">
                 <div class="layui-inline">
                     <button type="button" id="in-add" class="layui-btn">添加进货记录</button>
-                    <button type="button" id="out-add" class="layui-btn">添加出货纪律</button>
+                    <button type="button" id="out-add" class="layui-btn">添加出货记录</button>
                     <button type="button" id="push" class="layui-btn">导出数据到Excel表格</button>
                 </div>
                 <div class="layui-inline layui-layout-right" style="padding-top: 17px">
@@ -67,8 +67,8 @@
                         <div class="layui-form-item">
                             <div class="layui-inline">
                                 <select name="warehousesearch" lay-verify="">
-                                    <option value="010">查询仓库进货</option>
-                                    <option value="021">查询仓库出货</option>
+                                    <option value="010">仓库进货查询</option>
+                                    <option value="021">仓库出货查询</option>
                                 </select>
                             </div>
                             <div class="layui-inline">
@@ -78,21 +78,30 @@
                                 </select>
                             </div>
                             <div class="layui-inline">
-                                <select name="warehousesearch" lay-verify="">
-                                    <option value="010">查询仓库进货</option>
-                                    <option value="021">查询仓库出货</option>
-                                </select>
-                                <input type="text" name="title" required lay-verify="required" placeholder="请输需要查询的内容" autocomplete="off" class="layui-input">
+                                <input type="text" name="title" required lay-verify="" placeholder="请输需要查询的内容" autocomplete="off" class="layui-input">
                             </div>
                             <div class="layui-inline">
-                                <button class="layui-btn" lay-submit lay-filter="formDemo">查询</button>
+                                <button id="search-bt" class="layui-btn" lay-submit lay-filter="formDemo">查询</button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
             <div>
-                <table id="demo" lay-filter="test"></table>
+                <table class="layui-table" lay-data="{url:'/hw/business/table', page:true, id:'test'}" lay-filter="test">
+                    <thead>
+                        <tr>
+                            <th lay-data="{field:'id', width:80}" rowspan="2">序号</th>
+                            <th lay-data="{field:'name', width:120}" rowspan="2">货物名</th>
+                            <th lay-data="{field:'amount', width:120}" rowspan="2">货物数量</th>
+                            <th lay-data="{field:'date', width:120}" rowspan="2">日期</th>
+                        </tr>
+                    </thead>
+                </table>
+
+
+
+
             </div>
         </div>
     </div>

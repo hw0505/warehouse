@@ -9,4 +9,8 @@ import lombok.Data;
 @Data
 public class UserVo {
     private String name;
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
