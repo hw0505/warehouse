@@ -99,6 +99,7 @@ class Demo {
     constructor() {
         this.contextPath = this.getContextPath();
         this.url = this.contextPath + "/business/userList"
+        this.urlsearch = this.contextPath + "/business/search"
     }
 
     /**
@@ -106,6 +107,7 @@ class Demo {
      */
     init() {
         this.bindClick4Button();
+        this.bindSearchButton();
     }
     /**
      * 给按钮绑定点击事件
@@ -128,16 +130,27 @@ class Demo {
     }
 
     bindSearchButton() {
+        console.log("xxx");
+        var searchType1 = $("#searchType1").val();
+        var searchType2 = $("#searchType2").val();
+        var searchText = $("#searchText").val();
+        console.log("1: "+searchType1+" 2: "+searchType2+" 3: "+searchText);
         $("#search-bt").on("click", () => {
             this.$ajax({
-                url: this.url,
-                type: "GET",
-                data: {},
+                url: this.urlsearch,
+                type: "POST",
+                dataType:"json",
+                data: {
+                    searchType1:searchType1,
+                    searchType2:searchType2,
+                    searchText:searchText
+                },
                 success(data) {
-                    let res = JSON.stringify(data);
-                    $(".demo").text(res);
-                    let router = Constants.ROUTER;
-                    $(".demo").text(res + "--------" + JSON.stringify(router));
+                    console.log("success");
+                    // let res = JSON.stringify(data);
+                    // $(".demo").text(res);
+                    // let router = Constants.ROUTER;
+                    // $(".demo").text(res + "--------" + JSON.stringify(router));
                 }
             });
 

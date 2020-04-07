@@ -66,19 +66,19 @@
                     <form class="layui-form layui-inline" action="">
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <select name="warehousesearch" lay-verify="">
-                                    <option value="010">仓库进货查询</option>
-                                    <option value="021">仓库出货查询</option>
+                                <select id="searchType1" name="warehousesearch" lay-verify="">
+                                    <option value="010">按仓库进货查询</option>
+                                    <option value="021">按仓库出货查询</option>
                                 </select>
                             </div>
                             <div class="layui-inline">
-                                <select name="warehousesearch" lay-verify="">
+                                <select id="searchType2" name="warehousesearch" lay-verify="">
                                     <option value="010">按货物名称查询</option>
                                     <option value="021">按日期查询</option>
                                 </select>
                             </div>
                             <div class="layui-inline">
-                                <input type="text" name="title" required lay-verify="" placeholder="请输需要查询的内容" autocomplete="off" class="layui-input">
+                                <input id="searchText" type="text" name="title" required lay-verify="" placeholder="请输需要查询的内容" autocomplete="off" class="layui-input">
                             </div>
                             <div class="layui-inline">
                                 <button id="search-bt" class="layui-btn" lay-submit lay-filter="formDemo">查询</button>
