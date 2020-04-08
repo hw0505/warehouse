@@ -1,6 +1,7 @@
 package com.hw.warehouse.dao;
 
 import com.hw.warehouse.entity.InProductEntity;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -18,4 +19,7 @@ public interface InProductDao {
      */
     @Select("select inId, inName, inNumber, inDate from product_in")
     List<InProductEntity> query();
+
+    @Insert("insert into product_in(inName, inNumber, inDate) values(#{inName},#{inNumber},#{inDate})")
+    boolean saveInProduct(InProductEntity inProductEntity);
 }

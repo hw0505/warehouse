@@ -9,20 +9,7 @@
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
         <div class="layui-logo">宏义仓库管理系统</div>
-        <!-- 头部区域（可配合layui已有的水平导航） -->
-        <!-- <ul class="layui-nav layui-layout-left">
-          <li class="layui-nav-item"><a href="">控制台</a></li>
-          <li class="layui-nav-item"><a href="">商品管理</a></li>
-          <li class="layui-nav-item"><a href="">用户</a></li>
-          <li class="layui-nav-item">
-            <a href="javascript:;">其它系统</a>
-            <dl class="layui-nav-child">
-              <dd><a href="">邮件管理</a></dd>
-              <dd><a href="">消息管理</a></dd>
-              <dd><a href="">授权管理</a></dd>
-            </dl>
-          </li>
-        </ul> -->
+
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
@@ -60,7 +47,7 @@
                 <div class="layui-inline">
                     <button type="button" id="in-add" class="layui-btn">添加进货记录</button>
                     <button type="button" id="out-add" class="layui-btn">添加出货记录</button>
-                    <button type="button" id="push" class="layui-btn">导出数据到Excel表格</button>
+                    <button type="button" id="push" class="layui-btn" onclick="addin()">导出数据到Excel表格</button>
                 </div>
                 <div class="layui-inline layui-layout-right" style="padding-top: 17px">
                     <form class="layui-form layui-inline" action="">
@@ -80,15 +67,16 @@
                             <div class="layui-inline">
                                 <input id="searchText" type="text" name="title" required lay-verify="" placeholder="请输需要查询的内容" autocomplete="off" class="layui-input">
                             </div>
-                            <div class="layui-inline">
-                                <button id="search-bt" class="layui-btn" lay-submit lay-filter="formDemo">查询</button>
-                            </div>
+<!--                            <div class="layui-inline">-->
+<!--                                <button id="search-bt" class="layui-btn" lay-submit lay-filter="formDemo">查询</button>-->
+<!--                            </div>-->
                         </div>
                     </form>
+                    <button id="search-bt" class="layui-btn" lay-submit lay-filter="formDemo">查询</button>
                 </div>
             </div>
             <div>
-                <table class="layui-table" lay-data="{url:'/hw/business/table', page:true, id:'test'}" lay-filter="test">
+                <table class="layui-table" lay-data="{url:'/hw/business/search', page:true, id:'test'}" lay-filter="test">
                     <thead>
                         <tr>
                             <th lay-data="{field:'id', width:80}" rowspan="2">序号</th>
@@ -98,7 +86,7 @@
                         </tr>
                     </thead>
                 </table>
-
+<!--                <table class="layui-table" lay-data="{id: 'idTest'}"></table>-->
 
 
 
@@ -106,6 +94,64 @@
         </div>
     </div>
 </div>
+
+<div id="add-in-form" style="display: none">
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">货物名称</label>
+            <div class="layui-input-block">
+                <input id="inName" type="text" value="" name="title" required  lay-verify="required" placeholder="请输入货物名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">货物数量</label>
+            <div class="layui-input-block">
+                <input id="inNumber" type="text" name="title" required  lay-verify="required" placeholder="请输入货物数量" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">日期</label>
+            <div class="layui-input-block">
+                <input id="inDate" type="text" name="title" required  lay-verify="required" placeholder="请输入日期" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button id="add-in-bt" class="layui-btn" lay-submit lay-filter="formDemo">添加进货记录</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="add-out-form" style="display: none">
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">货物名称</label>
+            <div class="layui-input-block">
+                <input id="outName" type="text" name="title" required  lay-verify="required" placeholder="请输入货物名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">货物数量</label>
+            <div class="layui-input-block">
+                <input id="outNumber" type="text" name="title" required  lay-verify="required" placeholder="请输入货物数量" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">日期</label>
+            <div class="layui-input-block">
+                <input id="outDate" type="text" name="title" required  lay-verify="required" placeholder="请输入日期" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button id="add-out-bt" class="layui-btn" lay-submit lay-filter="formDemo">添加出货记录</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+
     <button id="demo-button">查数据</button>
     <div th:replace="fragment/pages/fragment_demo::page_demo"></div>
 

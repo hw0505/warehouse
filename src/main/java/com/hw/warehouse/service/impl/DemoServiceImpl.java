@@ -83,6 +83,18 @@ public class DemoServiceImpl implements IDemoService {
         return outProductVoList;
     }
 
+    @Override
+    public InProductVo addInProduct(InProductEntity inProductEntity){
+        inProductDao.saveInProduct(inProductEntity);
+        return null;
+    }
+
+    @Override
+    public OutProductVo addOutProduct(OutProductEntity outProductEntity){
+        outProductDao.saveOutProduct(outProductEntity);
+        return null;
+    }
+
     public InProductDao getInProductDao() {
         return inProductDao;
     }
