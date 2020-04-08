@@ -5,6 +5,7 @@ import com.hw.warehouse.entity.OutProductEntity;
 import com.hw.warehouse.service.IDemoService;
 import com.hw.warehouse.utils.GsonUtils;
 import com.hw.warehouse.vo.InProductVo;
+import com.hw.warehouse.vo.OutProductVo;
 import com.hw.warehouse.vo.UserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,29 +36,66 @@ public class DemoController {
     }
 
     @PostMapping(value = "/search")
-    public String getTableInfo(@RequestParam Map<String, Object> map) {
-        List<InProductVo> inProductList = demoService.getInProductList();
-        String res = GsonUtils.toJson(inProductList);
-        System.out.print("Search!");
-        List<String> tableItems = new ArrayList<String>();
-        //for(InProductVo inProductVo : inProductList){
-            String tableItem = "{\n" +
-                    "    \"code\": 0,\n" +
-                    "    \"msg\": \"\",\n" +
-                    "    \"count\": 100,\n" +
-                    "    \"data\": [\n" +
-                    "        {\n" +
-                    "            \"id\": \"" + inProductList.get(0).getInId() +"\",\n" +
-                    "            \"name\": \"" + inProductList.get(0).getInName() +"\",\n" +
-                    "            \"amount\": \"" + inProductList.get(0).getInNumber() +"\",\n" +
-                    "            \"date\": \"" +inProductList.get(0).getInDate() + "\"\n" +
-                    "        }\n" +
-                    "    ]\n" +
-                    "}";
-            tableItems.add(tableItem);
-//        }
-        System.out.print(inProductList.get(0).getInId());
+    public String getTableInfo(@RequestParam("searchTable") String searchTable,@RequestParam("searchType") String searchType,@RequestParam("searchText") String searchText) {
+        boolean SearchTable = Boolean.parseBoolean(searchTable);
+        String res = "";
+        System.out.print(searchTable + " " + searchType);
+        if(SearchTable){
+            res = getInTable(searchType,searchText);
+        }else{
+            res = getOutTable(searchType,searchText);
+        }
         return res;
+    }
+
+    public String getInTable(String searchType,String searchText){
+        List<InProductVo> inProductList= demoService.getInProductList();
+        String resp = "";
+        for(int i = 0;i < inProductList.size();i ++){
+            resp += "        {\n" +
+                    "            \"id\": \"" + inProductList.get(i).getInId() +"\",\n" +
+                    "            \"name\": \"" + inProductList.get(i).getInName() +"\",\n" +
+                    "            \"amount\": \"" + inProductList.get(i).getInNumber() +"\",\n" +
+                    "            \"date\": \"" +inProductList.get(i).getInDate() + "\"\n" +
+                    "        }\n";
+            if(i < (inProductList.size() - 1)) {
+                resp += ",";
+            }
+        }
+        String tableItem = "{\n" +
+                "    \"code\": 0,\n" +
+                "    \"msg\": \"\",\n" +
+                "    \"count\": " + inProductList.size() + ",\n" +
+                "    \"data\": [\n" +
+                resp +
+                "    ]\n" +
+                "}";
+        return tableItem;
+    }
+
+    public String getOutTable(String searchType,String searchText){
+        List<OutProductVo> outProductList= demoService.getOutProductList();
+        String resp = "";
+        for(int i = 0;i < outProductList.size();i ++){
+            resp += "        {\n" +
+                    "            \"id\": \"" + outProductList.get(i).getOutId() +"\",\n" +
+                    "            \"name\": \"" + outProductList.get(i).getOutName() +"\",\n" +
+                    "            \"amount\": \"" + outProductList.get(i).getOutNumber() +"\",\n" +
+                    "            \"date\": \"" +outProductList.get(i).getOutDate() + "\"\n" +
+                    "        }\n";
+            if(i < (outProductList.size() - 1)) {
+                resp += ",";
+            }
+        }
+        String tableItem = "{\n" +
+                "    \"code\": 0,\n" +
+                "    \"msg\": \"\",\n" +
+                "    \"count\": " + outProductList.size() + ",\n" +
+                "    \"data\": [\n" +
+                resp +
+                "    ]\n" +
+                "}";
+        return tableItem;
     }
 
 //    @PostMapping(value = "/search")

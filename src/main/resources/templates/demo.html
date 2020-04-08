@@ -50,43 +50,43 @@
                     <button type="button" id="push" class="layui-btn" onclick="addin()">导出数据到Excel表格</button>
                 </div>
                 <div class="layui-inline layui-layout-right" style="padding-top: 17px">
-                    <form class="layui-form layui-inline" action="">
+                    <div class="layui-form layui-inline" action="">
                         <div class="layui-form-item">
                             <div class="layui-inline">
                                 <select id="searchType1" name="warehousesearch" lay-verify="">
-                                    <option value="010">按仓库进货查询</option>
-                                    <option value="021">按仓库出货查询</option>
+                                    <option value="true">按仓库进货查询</option>
+                                    <option value="false">按仓库出货查询</option>
                                 </select>
                             </div>
                             <div class="layui-inline">
                                 <select id="searchType2" name="warehousesearch" lay-verify="">
-                                    <option value="010">按货物名称查询</option>
-                                    <option value="021">按日期查询</option>
+                                    <option value="1">按货物名称查询</option>
+                                    <option value="0">按日期查询</option>
                                 </select>
                             </div>
                             <div class="layui-inline">
-                                <input id="searchText" type="text" name="title" required lay-verify="" placeholder="请输需要查询的内容" autocomplete="off" class="layui-input">
+                                <input id="searchText" type="text" name="title"  lay-verify="" placeholder="请输需要查询的内容" autocomplete="off" class="layui-input">
                             </div>
                             <div class="layui-inline">
                                 <button id="search-bt" class="layui-btn" lay-submit lay-filter="formDemo">查询</button>
                             </div>
                         </div>
-                    </form>
-<!--                    <button id="search-bt" class="layui-btn" lay-submit lay-filter="formDemo">查询</button>-->
+                    </div>
                 </div>
             </div>
             <div>
-                <table class="layui-table" lay-data="{url:'/hw/business/search', page:true, id:'test'}" lay-filter="test">
-                    <thead>
-                        <tr>
-                            <th lay-data="{field:'id', width:80}" rowspan="2">序号</th>
-                            <th lay-data="{field:'name', width:120}" rowspan="2">货物名</th>
-                            <th lay-data="{field:'amount', width:120}" rowspan="2">货物数量</th>
-                            <th lay-data="{field:'date', width:120}" rowspan="2">日期</th>
-                        </tr>
-                    </thead>
-                </table>
-<!--                <table class="layui-table" lay-data="{id: 'idTest'}"></table>-->
+<!--                <table id="tableinfo" class="layui-table" lay-data="{url:'/hw/business/search', page:true, id:'test',}" lay-filter="test">-->
+<!--                    <thead>-->
+<!--                        <tr>-->
+<!--                            <th lay-data="{field:'id', width:80}">序号</th>-->
+<!--                            <th lay-data="{field:'name', width:120}">货物名</th>-->
+<!--                            <th lay-data="{field:'amount', width:120}">货物数量</th>-->
+<!--                            <th lay-data="{field:'date', width:120}">日期</th>-->
+<!--                        </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody id="tbody"></tbody>-->
+<!--                </table>-->
+                <table id="tableinfo" class="layui-table" lay-data="{page:true, id:'test'}"></table>
 
 
 

@@ -9,18 +9,67 @@ layui.use(["element", "layer", "table"], function () {
     var table = layui.table;
 
 
-    table.render({
-        elem: '#table'
-        ,height: 312
-        ,url: '/hw/business/search' //数据接口
+    var tablere =table.render({
+        // elem: '#tableinfo',
+        height: 312
+        ,msg:""
+        ,url: '' //数据接口
         ,page: true //开启分页
         ,cols: [[
             {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
-            ,{field: 'name', title: '物品名', width:80}
-            ,{field: 'amount', title: '数量', width:80, sort: true}
-            ,{field: 'date', title: '日期', width:80}
+            ,{field: 'name', title: '物品名', width:200}
+            ,{field: 'amount', title: '数量', width:200, sort: true}
+            ,{field: 'date', title: '日期', width:200}
         ]]
+        // ,parseData: function(){ //res 即为原始返回的数据
+        //     return {
+        //         // "id": res.inId, //解析接口状态
+        //         // "name": res.inName, //解析提示文本
+        //         // "amount": res.inNumber, //解析数据长度
+        //         // "date": res.inDate //解析数据列表
+        //         "id": "1", //解析接口状态
+        //         "name": "2", //解析提示文本
+        //         "amount": "3", //解析数据长度
+        //         "date": "4" //解析数据列表
+        //     };
+        // }
+
     });
+
+
+    $("#search-bt").on("click", () => {
+        var searchTable = $("#searchType1").val();
+        var searchType = $("#searchType2").val();
+        var searchText = $("#searchText").val();
+        let map = {
+            "searchTable":searchTable,
+            "searchType":searchType,
+            "searchText":searchText
+        }
+
+        tablere.reload({
+            elem: '#tableinfo',
+            url: '/hw/business/search',
+            where:{searchTable:searchTable,searchType:searchType,searchText:searchText},
+            method:"post"
+        });
+
+        //console.log(map.get("searchTable"));
+        // $.ajax({
+        //     url: "/hw/business/search",
+        //     type: "POST",
+        //     data: map,
+        //     success(data) {
+        //         // tablere.reload({
+        //         //     elem: '#tableinfo',
+        //         //     url: ''
+        //         //     ,method:"post"
+        //         // });
+        //     }
+        // });
+
+    });
+
 
     $('#in-add').on('click', function(){
         layer.open({
@@ -57,7 +106,7 @@ class Demo {
      */
     init() {
         this.bindClick4Button();
-        this.bindSearchButton();
+        //this.bindSearchButton();
         this.bindAddInButton();
         this.bindAddOutButton();
     }
@@ -81,39 +130,54 @@ class Demo {
         });
     }
 
-    bindSearchButton() {
-
-        $("#search-bt").on("click", () => {
-            console.log("search");
-            var searchType1 = $("#searchType1").val();
-            var searchType2 = $("#searchType2").val();
-            var searchText = $("#searchText").val();
-            let map = {
-                "searchType1":searchType1,
-                "searchType2":searchType2,
-                "searchText":searchText
-            }
-            this.$ajax({
-                url: "/hw/business/search",
-                type: "POST",
-                data: map,
-                success(data) {
-                    for(var i = 0 ;i < data.length; i++){
-
-                    }
-                    console.log(data);
-                    console.log(data[0].inDate);
-                    debugger;
-                    // layer.open({
-                    //     type: 1,
-                    //     content: '添加成功！' //这里content是一个普通的String
-                    // });
-                    //alert("添加成功");
-                }
-            });
-
-        });
-    }
+    // bindSearchButton() {
+    //
+    //     $("#search-bt").on("click", () => {
+    //         console.log("search");
+    //         var searchType1 = $("#searchType1").val();
+    //         var searchType2 = $("#searchType2").val();
+    //         var searchText = $("#searchText").val();
+    //         let map = {
+    //             "searchType1":searchType1,
+    //             "searchType2":searchType2,
+    //             "searchText":searchText
+    //         }
+    //         this.$ajax({
+    //             // url: "/hw/business/search",
+    //             type: "POST",
+    //             data: map,
+    //             success(data) {
+    //
+    //                 var tbody = document.getElementById('tbody');
+    //                 for(var i = 0 ;i < data.length; i++){
+    //                     var row = document.createElement('tr');
+    //                     var idCell = document.createElement('td'); //创建第一列id  
+    //                     idCell.innerHTML = data[i].inId; //填充数据  
+    //                     row.appendChild(idCell); //加入行  ，下面类似  
+    //
+    //                     var nameCell = document.createElement('td');//创建第二列name  
+    //                     nameCell.innerHTML = data[i].inName;
+    //                     row.appendChild(nameCell);
+    //
+    //                     var amountCell = document.createElement('td');//创建第三列job  
+    //                     amountCell.innerHTML = data[i].inNumber;
+    //                     row.appendChild(amountCell);
+    //
+    //                     var dateCell = document.createElement('td');//创建第三列job  
+    //                     dateCell.innerHTML = data[i].inDate;
+    //                     row.appendChild(dateCell);
+    //                     tbody.appendChild(row);
+    //                 }
+    //                 // layer.open({
+    //                 //     type: 1,
+    //                 //     content: '添加成功！' //这里content是一个普通的String
+    //                 // });
+    //                 //alert("添加成功");
+    //             }
+    //         });
+    //
+    //     });
+    // }
 
     bindAddInButton() {
         $("#add-in-bt").on("click", () => {
