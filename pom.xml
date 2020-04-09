@@ -138,6 +138,7 @@
                 </executions>
                 <configuration>
                     <!-- 镜像名称，我使用项目的名称 -->
+
                     <repository>${project.name}</repository>
                     <!-- 镜像标签，我使用项目的版本号 -->
                     <tag>${project.version}</tag>

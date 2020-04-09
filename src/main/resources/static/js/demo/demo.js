@@ -11,7 +11,7 @@ layui.use(["element", "layer", "table"], function () {
 
     var tablere =table.render({
         // elem: '#tableinfo',
-        height: 312
+        height: 'full-50'
         ,msg:""
         ,url: '' //数据接口
         ,page: true //开启分页
@@ -49,6 +49,7 @@ layui.use(["element", "layer", "table"], function () {
 
         tablere.reload({
             elem: '#tableinfo',
+            height: 'full-50',
             url: '/hw/business/search',
             where:{searchTable:searchTable,searchType:searchType,searchText:searchText},
             method:"post"
